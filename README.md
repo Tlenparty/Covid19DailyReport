@@ -1,49 +1,49 @@
 # Covid-19 Daily Report
 
-Заготовка Android-приложения для просмотра ежедневной статистики по Covid-19.
-Сейчас реализован каркас: сплэш-экран с анимацией, главная активити с навигацией
-через Cicerone и экран статистики (вёрстка без загрузки данных), всё связано
-через Dagger 2 и Moxy.
+A skeleton of an Android app for viewing daily Covid-19 statistics.
+Currently only the scaffolding is implemented: a splash screen with animation, a main activity with navigation
+via Cicerone and a statistics screen (layout only, no data loading), all wired together
+with Dagger 2 and Moxy.
 
-## Возможности
+## Features
 
-- Сплэш-экран с анимированной иконкой и переходом на главный экран
-- Навигация между экранами через Cicerone
-- Экран статистики: вёрстка с индикатором обновления и кнопками меню
-  (загрузка данных пока не реализована)
-- DI-каркас на dagger-android: внедрение роутера и планировщиков Rx в активити и фрагменты
+- Splash screen with an animated icon and a transition to the main screen
+- Navigation between screens via Cicerone
+- Statistics screen: layout with a refresh indicator and menu buttons
+  (data loading is not implemented yet)
+- DI scaffolding on dagger-android: injection of the router and Rx schedulers into activities and fragments
 
-## Стек
+## Tech stack
 
-| Область        | Технологии                                        |
+| Area           | Technologies                                      |
 |----------------|---------------------------------------------------|
-| Язык           | Kotlin                                            |
-| Архитектура    | MVP (Moxy)                                        |
-| Навигация      | Cicerone                                          |
+| Language       | Kotlin                                            |
+| Architecture   | MVP (Moxy)                                        |
+| Navigation     | Cicerone                                          |
 | DI             | Dagger 2 (dagger-android, assisted inject)        |
-| Асинхронность  | RxJava 2, RxKotlin, RxAndroid                     |
+| Concurrency    | RxJava 2, RxKotlin, RxAndroid                     |
 | UI             | ViewBinding (viewbindingpropertydelegate), Material Components |
 
-В зависимостях также подключены Retrofit, OkHttp и Room — под будущую загрузку
-и кеширование данных.
+Retrofit, OkHttp and Room are also included in the dependencies, in preparation for future data loading
+and caching.
 
-## Структура
+## Project structure
 
 ```
 app/src/main/java/com/tlenparty/covid19dailyreport/
-├── App.kt              # DaggerApplication, сборка компонента
+├── App.kt              # DaggerApplication, component setup
 ├── base_logic/
-│   ├── splash/         # сплэш-экран
-│   ├── main/           # MainActivity с навигатором Cicerone
-│   ├── covid_fragment/ # экран статистики (MVP)
+│   ├── splash/         # splash screen
+│   ├── main/           # MainActivity with the Cicerone navigator
+│   ├── covid_fragment/ # statistics screen (MVP)
 │   └── listeners/
-├── di/                 # Dagger-компонент, модули, базовая активити
-└── helpers/            # планировщики Rx, экраны Cicerone
+├── di/                 # Dagger component, modules, base activity
+└── helpers/            # Rx schedulers, Cicerone screens
 ```
 
-## Сборка
+## Build
 
-Требуется JDK 11–17 и Android SDK 31.
+Requires JDK 11–17 and Android SDK 31.
 
 ```bash
 ./gradlew assembleDebug
